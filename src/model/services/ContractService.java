@@ -15,8 +15,10 @@ public class ContractService {
 	
 	public void processContract(Contract contract, Integer months) {
 		
+		double value = contract.getTotalValue() / months;
+		
 		for(int i = 1; i <= months; i++) {
-			double amount = contract.getTotalValue() + onlinePayment.interest(contract.getTotalValue(), i);
+			double amount = value + onlinePayment.interest(value, i);
 			amount += onlinePayment.paymentFee(amount);
 			
 			LocalDate dueDate = contract.getDate().plusMonths(i);
