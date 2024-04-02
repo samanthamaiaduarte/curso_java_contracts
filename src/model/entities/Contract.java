@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contract {
@@ -17,6 +18,8 @@ public class Contract {
 		this.number = number;
 		this.date = date;
 		this.totalValue = totalValue;
+		
+		installment = new ArrayList<>();
 	}
 
 	public Integer getNumber() {
@@ -42,6 +45,9 @@ public class Contract {
 	public void setTotalValue(Double totalValue) {
 		this.totalValue = totalValue;
 	}
-	
-	
+
+	public List<Installment> getInstallment() {
+		return installment;
+	}
+
 }
