@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Contract {
 
@@ -8,7 +9,7 @@ public class Contract {
 	private LocalDate date;
 	private Double totalValue;
 	
-	private Installment installment;
+	private List<Installment> installment;
 	
 	public Contract() { }
 
