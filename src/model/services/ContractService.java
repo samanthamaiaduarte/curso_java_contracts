@@ -18,12 +18,13 @@ public class ContractService {
 		double value = contract.getTotalValue() / months;
 		
 		for(int i = 1; i <= months; i++) {
-			double amount = value + onlinePayment.interest(value, i);
-			amount += onlinePayment.paymentFee(amount);
+			double interest = onlinePayment.interest(value, i);
+			double fee = onlinePayment.paymentFee(value + interest); 
+			double amount = value + interest + fee;
 			
 			LocalDate dueDate = contract.getDate().plusMonths(i);
 			
-			contract.getInstallment().add(new Installment(dueDate, amount));
+			contract.getInstallments().add(new Installment(dueDate, amount));
 		}
 		
 	}

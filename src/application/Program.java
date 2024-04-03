@@ -17,11 +17,13 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
 		System.out.println("Entre com os dados do contrato");
 		System.out.print("Número: ");
 		int contractNumber = sc.nextInt();
 		System.out.print("Data (dd/MM/yyyy): ");
-		LocalDate contractDate = LocalDate.parse(sc.next(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		LocalDate contractDate = LocalDate.parse(sc.next(), dtf);
 		System.out.print("Valor do contrato: ");
 		double contractValue = sc.nextDouble();
 		System.out.print("Entre com o númeor de parcelas: ");
@@ -33,8 +35,8 @@ public class Program {
 		contractService.processContract(contract, numberOfMonths);
 		
 		System.out.println("PARCELAS:");
-		for(Installment installment : contract.getInstallment()) {
-			System.out.println(installment.getDueDate().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")) + " - " + String.format("%.2f", installment.getAmount()));
+		for(Installment installment : contract.getInstallments()) {
+			System.out.println(installment.getDueDate().format(dtf) + " - " + String.format("%.2f", installment.getAmount()));
 		}
 		
 		sc.close();
